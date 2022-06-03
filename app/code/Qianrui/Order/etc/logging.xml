@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<logging xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Logging:etc/logging.xsd">
+    <groups>
+        <group name="update_imei">
+            <label translate="true">Update Imei</label>
+            <events>
+<!--                <event controller_action="order_imei_save" action_alias="save">-->
+<!--                    <expected_models>-->
+<!--                        <expected_model class="Magento\Sales\Model\Order\Item">-->
+<!--                            <additional_fields>-->
+<!--                                <field name="imei" />-->
+<!--                            </additional_fields>-->
+<!--                        </expected_model>-->
+<!--                    </expected_models>-->
+<!--                    <skip_on_back>-->
+<!--                        <controller_action name="sales_order_view"/>-->
+<!--                    </skip_on_back>-->
+<!--                </event>-->
+                <event controller_action="order_imei_save" action_alias="save"
+                       post_dispatch="Qianrui\Order\Model\Logging::postDispatchUpdateImei">
+                    <skip_on_back>
+                        <controller_action name="sales_order_view"/>
+                    </skip_on_back>
+                </event>
+            </events>
+        </group>
+    </groups>
+</logging>
